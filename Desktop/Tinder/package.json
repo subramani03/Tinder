@@ -1,0 +1,22 @@
+{
+  "name": "tinder",
+  "version": "1.0.0",
+  "description": "tinder ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon src/app.js",
+    "start":"node src/app.js"
+
+
+  },
+  "keywords": [
+    "nodejs",
+    "javascript"
+  ],
+  "author": "subramani",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
