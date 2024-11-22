@@ -5,7 +5,10 @@ const UserModel = require("./models/user");
 const connectDB = require("./config/database");
 const { validateSignUpData } = require("./utils/validation");
 const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 
+app.use(cookieParser());
 app.use(express.json());
 
 //for creating unique emails
@@ -31,18 +34,44 @@ UserModel.syncIndexes()
 // });
 
 // POST METHOD for login
+
 app.post("/login", async (req, res) => {
   try {
     const { password, email } = req.body;
     const user = await UserModel.findOne({ email: email });
-    if(!user){
-        throw new Error("user not found");
+    if (!user) {
+      throw new Error("user not found");
     }
-    const passwordcomapre = await bcrypt.compare(password,user.password);
-    if(!passwordcomapre){
-        throw new Error("user credencial wrong");
+    const passwordcomapre = await bcrypt.compare(password, user.password);
+    if (passwordcomapre) {
+      const token = await jwt.sign({ _id: user._id }, "mani@0301");
+      res.cookie("token", token);
+      res.send("login succesfully");
+    } else {
+      throw new Error("user credencial wrong");
     }
-    res.send("login succesfully");
+  } catch (err) {
+    res.status(404).send("error:" + err.message);
+  }
+});
+
+app.get("/profile", async (req, res) => {
+  // const userId = req.body._id;
+  // const userAge = req.body.age;
+  try {
+    const cookies = req.cookies;
+    const { token } = cookies;
+    const decodeMsg = await jwt.verify(token, "mani@0301");
+    console.log(decodeMsg);
+    const { _id } = decodeMsg;
+    console.log(_id);
+    if (_id) {
+      const user = await UserModel.find({_id});
+      console.log("user fetched");
+      res.send(user);
+    } else {
+      throw new Error("user not found");
+    }
   } catch (err) {
     res.status(400).send("error:" + err.message);
   }
