@@ -1,12 +1,24 @@
-let UserAuth = (req, res, next) => {
-  console.log("user auth handler");
-  next();
-  // res.send("datas inseted into the data base");
+const jwt = require("jsonwebtoken");
+const UserModel = require("../models/user");
+
+let UserAuth = async (req, res, next) => {
+  try {
+    let cookie = req.cookies;
+    let { token } = cookie;
+    if (!token) {
+      throw new Error("invalid token");
+    }
+    const decodedMsg = await jwt.verify(token, "mani@0301");
+    const { _id } = decodedMsg;
+    const user = await UserModel.findOne({ _id });
+    if (!user) {
+      throw new Error("user not found");
+    }
+    req.user = user;
+    next();
+  } catch (err) {
+    res.status(404).send("error:"+err.message);    
+  }
 };
 
-let adminAuth = (req, res, next) => {
-  console.log("admin auth handler");
-  next();
-  // res.send("datas inseted into the data base");
-};
-module.exports = { UserAuth, adminAuth };
+module.exports = { UserAuth };
