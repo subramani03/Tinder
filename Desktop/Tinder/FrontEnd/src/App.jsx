@@ -4,22 +4,32 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Body from './Components/Body';
 import Login from './Components/Login';
 import Profile from './Components/Profile';
+import { Provider } from 'react-redux';
+import appStore from './Utils/appStore';
 import Feed from './Components/Feed';
+import EditProfile from './Components/EditProfile';
+import Connection from './Components/Connection';
+import Request from './Components/Request';
 
 const App = () => {
   return (
-    <div>
+    <Provider store={appStore}>
       <BrowserRouter basename='/'>
         <Routes>
-          <Route path='/' element={<Body/>}>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/profile' element={<Profile/>}/>
-            <Route path='/feed' element={<Feed/>}/>
+          {/* Layout Route */}
+          <Route path="/" element={<Body />}>
+            {/* Nested Routes */}
+            <Route index element={<Feed />} />
+            <Route path="login" element={<Login />} />
+            <Route path="profile" element={<Profile />}/>
+            <Route path="profiledit" element={<EditProfile/>} />
+            <Route path="connection" element={<Connection/>} />
+            <Route path="request" element={<Request/>} />
           </Route>
         </Routes>
       </BrowserRouter>
-    </div>
-  )
-}
+    </Provider>
+  );
+};
 
-export default App
+export default App;

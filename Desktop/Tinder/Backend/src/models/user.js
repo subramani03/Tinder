@@ -3,7 +3,6 @@ const validator = require("validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-
 const userSchema = mongoose.Schema(
   {
     firstName: {
@@ -38,11 +37,7 @@ const userSchema = mongoose.Schema(
     gender: {
       type: String,
       validate(value) {
-        if (
-          !["male", "female", "others", "Male", "Female", "Others"].includes(
-            value
-          )
-        ) {
+        if (!["male", "female", "others", "Male", "Female", "Others"].includes(value)){
           throw new Error("please provide valid gender");
         }
       },
@@ -61,12 +56,16 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "This is default description about the user",
     },
+    imageUrl:{
+      type:String,
+      default:"https://cdn-icons-png.flaticon.com/512/147/147144.png"
+    }
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 userSchema.methods.getJWT = async function () {
-  const user=this;
+  const user = this;
   const token = await jwt.sign({ _id: user._id }, "mani@0301", {
     expiresIn: "7d",
   });
@@ -74,7 +73,7 @@ userSchema.methods.getJWT = async function () {
 };
 
 userSchema.methods.validatePassword = async function (password) {
-  const user=this;
+  const user = this;
   const passwordcomapre = await bcrypt.compare(password, user.password);
   return passwordcomapre;
 };

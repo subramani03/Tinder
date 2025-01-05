@@ -8,18 +8,18 @@ const authRouter=express.Router();
  // POST signup method
  authRouter.post("/signup", async (req, res) => {
     try {
-      const { firstName, lastName, password, email, age, gender } = req.body;
+      const { firstName, lastName, password, email, } = req?.body;
       const passwordHash = await bcrypt.hash(password, 10);
       const user = new UserModel({
         firstName,
         lastName,
         password: passwordHash,
         email,
-        age,
-        gender,
       });
       await user.save();
-      res.send("signined successfully!!");
+      const token = await user.getJWT(); 
+      res.cookie("token", token, { expires: new Date(Date.now() +  7* 24 * 60 * 60 * 1000)});
+      res.status(200).send(user);
     } catch (err) {
       res.status(400).send("error:" + err.message);
     }
@@ -38,7 +38,7 @@ authRouter.post("/login", async (req, res) => {
       if (passwordcomapre) {
         const token = await user.getJWT();   // schema methods foe creating jwt token
         res.cookie("token", token, { expires: new Date(Date.now() +  7* 24 * 60 * 60 * 1000)});
-        res.send("login succesfully");
+        res.send(user);
       } else {
         throw new Error("user credencial wrong");
       }
@@ -50,7 +50,8 @@ authRouter.post("/login", async (req, res) => {
   // POST logout method
   authRouter.post("/logout", async (req, res) => {
     try {
-        res.cookie("token", null, { expires: new Date(Date.now())});
+        res.cookie("token",null, { expires: new Date(Date.now())});
+        console.log("logouted")
         res.send("logouted succesfully"); 
     } catch (err){
       res.status(404).send("error:" + err.message);

@@ -27,7 +27,6 @@ profileRouter.patch("/profile/edit", UserAuth, async (req, res) => {
       "firstName",
       "lastName",
       "age",
-      "email",
       "gender",
       "about",
     ];
@@ -40,6 +39,7 @@ profileRouter.patch("/profile/edit", UserAuth, async (req, res) => {
     }
     console.log(user._id);
     let updatedUser = await UserModel.findByIdAndUpdate(user._id, newData, {
+      new: true,
       runValidators: true,
     });
     console.log("user profile updated");

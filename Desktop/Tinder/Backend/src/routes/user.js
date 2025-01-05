@@ -12,9 +12,9 @@ userRouter.get("/user/request/received", UserAuth, async (req, res) => {
         toUserId: loggedinUser,
         status: "interested",
       })
-      .populate("fromUserId", "firstName lastName age gender");
+      .populate("fromUserId", "firstName lastName age gender about imageUrl");
     if(connectionRequest.length === 0) {
-        return res.send("feed not found");
+        return res.status(404).send("feed not found");
     }
     res.send(connectionRequest);
   } catch (err) {
@@ -30,8 +30,8 @@ userRouter.get("/user/connection", UserAuth, async (req, res) => {
         $or: [{ toUserId: loggedinUser }, { fromUserId: loggedinUser }],
         status: "accepted",
       })
-      .populate("fromUserId", "firstName lastName age gender")
-      .populate("toUserId", "firstName lastName age gender");
+      .populate("fromUserId", "firstName lastName age gender about imageUrl")
+      .populate("toUserId", "firstName lastName age gender about imageUrl");
 
     // console.log(connectionRequest.map((row)=>{
     //     if(row.fromUserId._id.equals(loggedinUser)){
@@ -47,7 +47,7 @@ userRouter.get("/user/connection", UserAuth, async (req, res) => {
         : row.fromUserId;
     });
     if (connectionData.length === 0) {
-        return res.send("matches not found!");
+        return res.status(404).send("No connection found");
     }
     res.send(connectionData);
   } catch (err) {
@@ -80,7 +80,7 @@ userRouter.get("/feed", UserAuth, async (req, res) => {
         { _id: { $nin: Array.from(hideUsers) } },
       ],
     })
-      .select(" firstName lastName age gender about")
+      .select(" firstName lastName age gender about imageUrl")
       .skip(skip)
       .limit(limit);
     console.log();
