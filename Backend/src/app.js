@@ -8,7 +8,7 @@ require('dotenv').config();
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Make sure this matches the frontend origin exactly
+    origin: "https://www.tinder-dating.rest/", // Make sure this matches the frontend origin exactly
     methods: ["GET", "POST", "PATCH", "DELETE", "PUT"], // Ensure PATCH is included
     allowedHeaders: ["Content-Type", "Authorization"], // Allow these headers
     credentials: true, // Allow cookies and credentials
