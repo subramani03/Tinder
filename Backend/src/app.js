@@ -4,7 +4,8 @@ const UserModel = require("./models/user");
 const connectDB = require("./config/database");
 const cookieParser = require("cookie-parser");
 var cors = require('cors')
- 
+require('dotenv').config();
+
 app.use(
   cors({
     origin: "http://localhost:5173", // Make sure this matches the frontend origin exactly

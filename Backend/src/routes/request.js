@@ -2,6 +2,7 @@ const express = require("express");
 const { UserAuth } = require("../middleware/auth");
 const UserModel = require("../models/user");
 const connectionRequestModel = require("../models/connectionRequest");
+const {run}= require("../utils/sendEmail")
 
 let requestRouter = express.Router();
 
@@ -56,6 +57,9 @@ requestRouter.post(
         status,
       });
       await connectionRequest.save();
+
+      const sendEmailResponse = await run();
+      console.log(sendEmailResponse);
       res.send(
         req.user.firstName + " has send an " + status + " connection request"
       );

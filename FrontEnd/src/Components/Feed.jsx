@@ -8,7 +8,7 @@ import { addFeed } from '../Utils/FeedSlice';
 
 const Feed = () => {
 
-  const Feed = useSelector((store)=>store.feedReducer);
+  const Feed = useSelector((store) => store.feedReducer);
   const dispatch = useDispatch();
 
   let FetchFeed = async () => {
@@ -26,9 +26,11 @@ const Feed = () => {
 
   return (
     <div>
-      {Feed &&
-
-        (<UserCard feed={Feed[0]} />)
+      {Feed ?
+        (<UserCard feed={Feed[0]} />) :
+        (<div className="flex justify-center items-center h-96">
+          <p className="text-gray-500 text-lg">No feed found</p>
+        </div>)
       }
     </div>
   )
