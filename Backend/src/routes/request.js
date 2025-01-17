@@ -56,10 +56,12 @@ requestRouter.post(
         toUserId,
         status,
       });
-      await connectionRequest.save();
 
       const sendEmailResponse = await run();
       console.log(sendEmailResponse);
+
+      await connectionRequest.save();
+
       res.send(
         req.user.firstName + " has send an " + status + " connection request"
       );
