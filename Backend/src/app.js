@@ -5,7 +5,7 @@ const connectDB = require("./config/database");
 const cookieParser = require("cookie-parser");
 var cors = require('cors')
 require('dotenv').config();
-
+require("./utils/cronjobs")
 app.use(
   cors({
     origin: "http://localhost:5173", // Make sure this matches the frontend origin exactly
