@@ -57,6 +57,9 @@ const Footer = () => {
                         <Link to={"/TermsAndConditions"}>Terms and Conditions</Link>
                     </li>
                     <li>
+                        <Link to={"/ShippingAndDelivery"}>Shipping And Delivery </Link>
+                    </li>
+                    <li>
                         <Link to={"/CancellAndRefund"}>Cancellation and Refund</Link>
                     </li>
                     <li>
