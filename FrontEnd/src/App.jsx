@@ -45,7 +45,7 @@ const useAuth = () => {
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }) => {
   const { isLoggedIn } = useAuth();
-  
+
 
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
@@ -62,17 +62,17 @@ const App = () => {
           {/* Layout Route */}
           <Route path="/" element={<Body />}>
             {/* Public Routes */}
-            <Route index element={<Feed />} />
             <Route path="login" element={<Login />} />
             <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
             <Route path="TermsAndConditions" element={<TermsAndConditions />} />
             <Route path="CancellAndRefund" element={<CancellationAndRefund />} />
-            <Route path="Contact" element={<ContactUs />}/>
+            <Route path="Contact" element={<ContactUs />} />
             <Route path="ShippingAndDelivery" element={<ShippingAndDelivery />} />
 
 
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
+              <Route index element={<Feed />} />
               <Route path="profile" element={<Profile />} />
               <Route path="profiledit" element={<EditProfile />} />
               <Route path="connection" element={<Connection />} />
