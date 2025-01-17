@@ -28,7 +28,7 @@ const Feed = () => {
     <div>
       {Feed ?
         (<UserCard feed={Feed[0]} />) :
-        (<div className="flex justify-center items-center h-96">
+        (<div className="flex justify-center items-center h-80">
           <p className="text-gray-500 text-lg">No feed found</p>
         </div>)
       }

@@ -10,6 +10,10 @@ import Feed from './Components/Feed';
 import EditProfile from './Components/EditProfile';
 import Connection from './Components/Connection';
 import Request from './Components/Request';
+import PrivacyPolicy from './Components/FooterLinks/PrivacyPolicy';
+import TermsAndConditions from './Components/FooterLinks/TermsAndConditions';
+import CancellationAndRefund from './Components/FooterLinks/CancellationAndRefund';
+import ContactUs from './Components/FooterLinks/ContactUs';
 
 const App = () => {
   return (
@@ -25,6 +29,10 @@ const App = () => {
             <Route path="profiledit" element={<EditProfile/>} />
             <Route path="connection" element={<Connection/>} />
             <Route path="request" element={<Request/>} />
+            <Route path="PrivacyPolicy" element={<PrivacyPolicy/>} />
+            <Route path="TermsAndConditions" element={<TermsAndConditions/>} />
+            <Route path="CancellAndRefund" element={<CancellationAndRefund/>} />
+            <Route path="Contact" element={<ContactUs/>} />
           </Route>
         </Routes>
       </BrowserRouter>

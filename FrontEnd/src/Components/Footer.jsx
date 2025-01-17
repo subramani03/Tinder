@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
-        <footer className="footer bg-base-300 flex justify-around py-8 relative bottom-0">
+        <footer className="footer bg-base-300 flex justify-around py-8 mt-10">
             <aside>
                 <h1 className='text-3xl font-bold'>Tinder</h1>
                 <p className='font-semibold'>
@@ -12,7 +13,6 @@ const Footer = () => {
                 </p>
             </aside>
             <nav>
-                <h6 className="footer-title">Social</h6>
                 <div className="grid grid-cols-3 gap-4">
                     <a>
                         <svg
@@ -48,6 +48,21 @@ const Footer = () => {
                         </svg>
                     </a>
                 </div>
+
+                <ul>
+                    <li>
+                        <Link to={"/PrivacyPolicy"}>Privacy Policy</Link>
+                    </li>
+                    <li>
+                        <Link to={"/TermsAndConditions"}>Terms and Conditions</Link>
+                    </li>
+                    <li>
+                        <Link to={"/CancellAndRefund"}>Cancellation and Refund</Link>
+                    </li>
+                    <li>
+                        <Link to={"/Contact"}>Contact Us</Link>
+                    </li>
+                </ul>
             </nav>
         </footer>
     )
