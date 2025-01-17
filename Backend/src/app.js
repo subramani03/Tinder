@@ -8,7 +8,7 @@ require('dotenv').config();
 
 app.use(
   cors({
-    origin: "https://www.tinder-dating.rest", // Make sure this matches the frontend origin exactly
+    origin: "http://localhost:5173", // Make sure this matches the frontend origin exactly
     methods: ["GET", "POST", "PATCH", "DELETE", "PUT"], // Ensure PATCH is included
     allowedHeaders: ["Content-Type", "Authorization"], // Allow these headers
     credentials: true, // Allow cookies and credentials
@@ -40,7 +40,7 @@ UserModel.syncIndexes()
 connectDB()
   .then(() => {
     console.log("database connected succesfully");
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
       console.log("listening to the port 3000");
     });
   })

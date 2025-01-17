@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <footer className="footer bg-base-300 flex justify-around py-8 fixed bottom-0">
+        <footer className="footer bg-base-300 flex justify-around py-8 relative bottom-0">
             <aside>
                 <h1 className='text-3xl font-bold'>Tinder</h1>
                 <p className='font-semibold'>

@@ -2,7 +2,7 @@ const express = require("express");
 const { UserAuth } = require("../middleware/auth");
 const UserModel = require("../models/user");
 const connectionRequestModel = require("../models/connectionRequest");
-const {run}= require("../utils/sendEmail")
+const sendEmail= require("../utils/sendEmail")
 
 let requestRouter = express.Router();
 
@@ -57,13 +57,15 @@ requestRouter.post(
         status,
       });
 
-      const sendEmailResponse = await run();
+      const sendEmailResponse = await sendEmail.run("A new Friend request from "+req.user.firstName,
+        req.user.firstName + " has " + status + " in "+ isUserIdExist.firstName 
+      );
       console.log(sendEmailResponse);
 
       await connectionRequest.save();
 
       res.send(
-        req.user.firstName + " has send an " + status + " connection request"
+        req.user.firstName + " has " + status + " in "+ isUserIdExist.firstName 
       );
     } catch (err) {
       res.status(400).send("error:" + err.message);
