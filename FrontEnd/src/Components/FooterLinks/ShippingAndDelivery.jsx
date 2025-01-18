@@ -28,7 +28,7 @@ const ShippingAndDelivery = () => {
       <p className="mt-4">
         For any questions or concerns regarding shipping, please contact us at{' '}
         <a href="mailto:support@devtinder.com" className="text-blue-500 underline">
-          support@devtinder.com
+          support@tinder-dating.rest.com
         </a>.
       </p>
     </div>
