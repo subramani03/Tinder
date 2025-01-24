@@ -5,7 +5,6 @@ const sendEmail = require("./sendEmail");
 
 
 cron.schedule("2 14 * * *",async ()=>{
-
     try{
         const yesterday = subDays(new Date(),1);
 

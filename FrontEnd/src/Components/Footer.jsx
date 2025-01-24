@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
-        <footer className="footer bg-base-300 flex justify-around py-8 mt-10">
+        <footer className="footer bg-base-300 flex justify-around py-8 mt-10 text-xs md:text-sm lg:text-base">
             <aside>
-                <h1 className='text-3xl font-bold'>Tinder</h1>
+                <h1 className='text-xl md:text-2xl lg:text-3xl font-bold'>Tinder</h1>
                 <p className='font-semibold'>
                     Tinder Industries Ltd.
                     <br />
@@ -17,8 +17,8 @@ const Footer = () => {
                     <a>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
+                            width="20"
+                            height="20"
                             viewBox="0 0 24 24"
                             className="fill-current">
                             <path
@@ -28,8 +28,8 @@ const Footer = () => {
                     <a>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
+                            width="20"
+                            height="20"
                             viewBox="0 0 24 24"
                             className="fill-current">
                             <path
@@ -39,8 +39,8 @@ const Footer = () => {
                     <a>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
+                            width="20"
+                            height="20"
                             viewBox="0 0 24 24"
                             className="fill-current">
                             <path

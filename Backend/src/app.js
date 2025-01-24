@@ -5,7 +5,14 @@ const connectDB = require("./config/database");
 const cookieParser = require("cookie-parser");
 var cors = require('cors')
 require('dotenv').config();
-require("./utils/cronjobs")
+require("./utils/cronjobs");
+
+//socket connection
+const initiateSocket = require("./utils/socket");
+const http = require('http');
+const server = http.createServer(app);
+initiateSocket(server);
+
 app.use(
   cors({
     origin: "http://localhost:5173", // Make sure this matches the frontend origin exactly
@@ -23,11 +30,13 @@ const {authRouter} = require('./routes/auth');
 const {profileRouter} = require('./routes/profile');
 const {requestRouter} = require('./routes/request');
 const {userRouter} = require('./routes/user');
+const {chatRouter} = require('./routes/chat');
 
 app.use("/",authRouter);
 app.use("/",profileRouter);
 app.use("/",requestRouter);
 app.use("/",userRouter);
+app.use("/",chatRouter);
 
 
 //for creating unique emails
@@ -40,7 +49,7 @@ UserModel.syncIndexes()
 connectDB()
   .then(() => {
     console.log("database connected succesfully");
-    app.listen(process.env.PORT, () => {
+    server.listen(process.env.PORT, () => {
       console.log("listening to the port 3000");
     });
   })

@@ -61,9 +61,7 @@ requestRouter.post(
         req.user.firstName + " has " + status + " in "+ isUserIdExist.firstName 
       );
       console.log(sendEmailResponse);
-
       await connectionRequest.save();
-
       res.send(
         req.user.firstName + " has " + status + " in "+ isUserIdExist.firstName 
       );

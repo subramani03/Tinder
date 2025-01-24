@@ -4,10 +4,14 @@ import daisyui from "daisyui";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        xs: "350px", // Define custom breakpoint
+      },
+    },
   },
   daisyui: {
-    themes: ["light", "dark", "cupcake","forest",],
+    themes: ["light", "dark", "cupcake", "forest"],
   },
   plugins: [daisyui],
 };

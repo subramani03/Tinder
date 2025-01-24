@@ -28,7 +28,7 @@ const Login = () => {
         }
         catch (err) {
             console.log(err);
-            setError(err.response.data);
+            setError(err);
         }
     }
 
@@ -43,6 +43,7 @@ const Login = () => {
                 withCredentials: true,
             })
             dispatch(addUser(res.data));
+            dispatch(login());
             navigate('/profile');
         }
         catch (err) {

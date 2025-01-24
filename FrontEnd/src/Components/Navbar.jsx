@@ -30,9 +30,9 @@ const Navbar = () => {
         </div>
         {
           user && (
-            <div className="flex gap-1">
-              <p className='font-semibold text-xl'>{user.firstName}</p>
-              <div className="dropdown dropdown-end mx-5">
+            <div className="flex">
+              <p className='font-semibold text-sm hidden xs:block md:text-base lg:text-xl'>{user.firstName}</p>
+              <div className="dropdown dropdown-end mr-4 ml-1 md:ml-4">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
                     <img
