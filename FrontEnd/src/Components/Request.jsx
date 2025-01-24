@@ -68,9 +68,9 @@ const Request = () => {
             {requestState.map((request, index) => {
                 const { age, firstName, gender, lastName, about, imageUrl } = request.fromUserId;
                 return (
-                    <div key={index} className="bg-base-300 w-2/3 p-4 rounded-md mb-4 shadow-md">
+                    <div key={index} className="bg-base-300 w-full  sm:w-2/3 p-4 rounded-md mb-4 shadow-md">
                         <div className="flex gap-5 items-center">
-                            <div>
+                            <div className='flex-shrink-0'>
                                 <img className="w-28 h-28 rounded-full object-cover" src={imageUrl || "/placeholder.jpg"} alt={`${firstName}'s profile`} />
                             </div>
                             <div>
