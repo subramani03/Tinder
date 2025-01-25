@@ -36,15 +36,14 @@ const Connection = () => {
     if (error) {
         return <div className='text-2xl flex justify-center items-center h-96'>{error}</div>;
     }
-   
     return (<div className='flex flex-col justify-center items-center p-4'>
         <h1 className='text-2xl  lg:text-4xl md:text-3xl my-3 font-semibold text-primary'>Connection</h1>
         {
             connectionState.map((connection, index) => {
                 let {_id, age, firstName, gender, lastName, about, imageUrl } = connection;
                 return (
-                    <div key={index} className='flex justify-between px-14 items-center bg-base-300 w-full sm:w-2/3 p-4 rounded-md mb-2'>
-                        <div className='flex gap-5 items-center'>
+                    <div key={index} className='flex justify-between items-center bg-base-300 w-full sm:w-2/3 p-4 rounded-md mb-2'>
+                        <div className='flex gap-5 items-center justify-start'>
                             <div className='flex-shrink-0'>
                                 <img className='w-28 rounded-full' src={imageUrl} alt={"image"} />
                             </div>
